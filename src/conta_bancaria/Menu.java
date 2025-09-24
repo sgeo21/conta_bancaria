@@ -3,6 +3,7 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
 
 public class Menu {
 
@@ -15,22 +16,35 @@ public class Menu {
 		
 		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 500000.00f);
 		System.out.println("O saldo da conta é: " + c1.getSaldo());
-		Conta c2 = new Conta(1, 124, 1, "Priscila Maia", 30000.00f);
+		Conta c2 = new Conta(1, 124, 1, "Priscila Maia", 30000.00f); 
 		c1.setSaldo(600000.00f);
-		System.out.println("O Saldoda conta é: " + c1.getSaldo());
+		System.out.println("O saldo da conta é: " + c1.getSaldo());
 		//visualizar para visualizar dados de uma forma completa incluido la no "conta". 
 		c1.visualizar();
 		c2.visualizar();
 		
 		System.out.println(c1.sacar(1000));
-		System.out.println("O Saldoda conta é: " + c1.getSaldo());
+		System.out.println("O saldo da conta é: " + c1.getSaldo());
 		System.out.println(c2.sacar(50000));
-		System.out.println("O Saldoda conta é: " + c2.getSaldo());
+		System.out.println("O saldo da conta é: " + c2.getSaldo());
 		
 		c1.depositar(5000); //preciso criar
-		System.out.println("O Saldoda conta é: " + c1.getSaldo());
+		System.out.println("O Saldo da conta é: " + c1.getSaldo());
 		
-
+		//instanciar objetos da classe ContaCorrente
+		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f);
+		
+		cc1.visualizar(); 
+		//sacar CC
+		System.out.println(cc1.sacar(2000000.00f)); //saque valor superior ao disp.
+		cc1.visualizar();
+		System.out.println(cc1.sacar(2000.00f)); //saque valor menor ao disp.
+		cc1.visualizar();
+		
+		//depositar em CC
+		cc1.depositar(5000.00f);//(não precisa adicionar nada por ser CC, pois o saque é um metodo void)
+		cc1.visualizar(); 
+		
 		while (true) {
 		
 		System.out.println("*********************************");

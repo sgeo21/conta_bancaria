@@ -26,6 +26,10 @@ public class Conta {
 		// Métodos Get e Set - para permitir que de outras classes eu consiga acessar o valor que esta em um atributo
 				//set é para alterar o que esta dentro do objeto
 
+		public Conta() {} //criar um parametro vazio, isso é uma 'sobrecarga de método'
+		//poderia ser utilizado para caso queira adicionar um objeto dele depois
+		//quando quer ter opções para situações que pedem variações do método
+		
 		public int getNumero() {
 			return numero;
 		}
@@ -89,7 +93,7 @@ public class Conta {
 			}
 			
 			System.out.printf("\n*********************");
-			System.out.printf("Dados da conta:        ");
+			System.out.printf("Dados da conta");
 			System.out.printf("*********************\n");
 			System.out.printf("Número da conta: %d%n", this.numero);
 			System.out.printf("Número da Agencia: %d%n", this.agencia);
