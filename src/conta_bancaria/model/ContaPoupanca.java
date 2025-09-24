@@ -16,6 +16,9 @@ public class ContaPoupanca extends Conta {
 	public void setAniversario(int aniversario) {
 		this.aniversario = aniversario;
 	}
-	
-	
+	@Override
+	public void visualizar () {
+	super.visualizar();
+	System.out.println("O dia de rendimento da sua conta Poupança é: " + aniversario);
+	}
 }

@@ -2,8 +2,8 @@ package conta_bancaria;
 
 import java.util.Scanner;
 
-import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
+import conta_bancaria.model.ContaPoupanca;
 
 public class Menu {
 
@@ -14,12 +14,13 @@ public class Menu {
 		
 		//Instanciador objetos da classe Conta
 		
-		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 500000.00f);
+	/*Retirei poia  classe conta foi transformada em abstract
+		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 500000.00f); 
 		System.out.println("O saldo da conta é: " + c1.getSaldo());
 		Conta c2 = new Conta(1, 124, 1, "Priscila Maia", 30000.00f); 
 		c1.setSaldo(600000.00f);
 		System.out.println("O saldo da conta é: " + c1.getSaldo());
-		//visualizar para visualizar dados de uma forma completa incluido la no "conta". 
+		visualizar para visualizar dados de uma forma completa incluido la no "conta". 
 		c1.visualizar();
 		c2.visualizar();
 		
@@ -29,7 +30,7 @@ public class Menu {
 		System.out.println("O saldo da conta é: " + c2.getSaldo());
 		
 		c1.depositar(5000); //preciso criar
-		System.out.println("O Saldo da conta é: " + c1.getSaldo());
+		System.out.println("O Saldo da conta é: " + c1.getSaldo());*/
 		
 		//instanciar objetos da classe ContaCorrente
 		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f);
@@ -44,6 +45,11 @@ public class Menu {
 		//depositar em CC
 		cc1.depositar(5000.00f);//(não precisa adicionar nada por ser CC, pois o saque é um metodo void)
 		cc1.visualizar(); 
+		
+		ContaPoupanca cp1 = new ContaPoupanca(4, 280, 2, "Geovana Cazali", 1500000.00f, 24);
+		cp1.visualizar();
+		cp1.depositar(2000);
+		System.out.println("O Saldo da conta é: " + cp1.getSaldo());
 		
 		while (true) {
 		

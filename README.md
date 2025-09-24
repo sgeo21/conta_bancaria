@@ -136,10 +136,10 @@ Para executar os códigos localmente, você precisará de:
 
 ### 6.1. Importando o Projeto
 
-1. Clone o repositório do Projeto [Conta Bancária](https://github.com/rafaelq80/conta_bancaria_t82) dentro da pasta do *Workspace* do Eclipse/STS
+1. Clone o repositório do Projeto [Conta Bancária](https://github.com/sgeo21/conta_bancaria) dentro da pasta do *Workspace* do Eclipse/STS
 
 ```bash
-git clone https://github.com/rafaelq80/conta_bancaria_t82.git
+git clone https://github.com/sgeo21/conta_bancaria
 ```
 
 2. **Abra o Eclipse/STS** e selecione a pasta do *Workspace* onde você clonou o repositório do projeto

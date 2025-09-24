@@ -1,7 +1,7 @@
 package conta_bancaria.model;
 
 public class ContaCorrente extends Conta { // java não herda mais de uma classe.
-		// TODO Auto-generated constructor stub
+		
 
 // o extends a classe conta em herança.
 	private float limite;
