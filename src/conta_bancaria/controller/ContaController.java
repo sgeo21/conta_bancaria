@@ -1,20 +1,29 @@
 package conta_bancaria.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import conta_bancaria.model.Conta;
 import conta_bancaria.repository.ContaRepository;
 
 public class ContaController implements ContaRepository{ // vai reclamar no ContaController
 	//e vai vamos trazer ele através da primeira sugestão, ->addunimplementedmetods.
-
+	
+	//Precisa fazer isso para 
+    private List<Conta> listaContas = new ArrayList<Conta>();
+    int numero =0;
+	
 	@Override
-	public void listarTodas() {
-		// TODO Auto-generated method stub
-		
+	public void listarTodas() {// para dar essa opção la no menu precisa deste 
+		for(var conta: listaContas) {
+			conta.visualizar();
+		}
 	}
 
 	@Override
 	public void cadastrar(Conta conta) {
-		// TODO Auto-generated method stub
+		listaContas.add(conta);
+		System.out.println("Conta Cadastrada com sucesso!");
 		
 	}
 

@@ -1,55 +1,25 @@
 package conta_bancaria;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import conta_bancaria.controller.ContaController;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
+import conta_bancaria.util.Cores;
 
 public class Menu {
-
+	private static final Scanner leia = new Scanner (System.in); // para que ele não seja 
+	//modificado e que seja uma constante 
+	//e será usado por todos os métodos usados dentro da classe 
+	private static final ContaController contaController = new ContaController();
+	
 	public static void main(String[] args) {
 	
-		Scanner leia = new Scanner (System.in);
+		
 		int opcao;
 		
-		//Instanciador objetos da classe Conta
-		
-	/*Retirei poia  classe conta foi transformada em abstract
-		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 500000.00f); 
-		System.out.println("O saldo da conta é: " + c1.getSaldo());
-		Conta c2 = new Conta(1, 124, 1, "Priscila Maia", 30000.00f); 
-		c1.setSaldo(600000.00f);
-		System.out.println("O saldo da conta é: " + c1.getSaldo());
-		visualizar para visualizar dados de uma forma completa incluido la no "conta". 
-		c1.visualizar();
-		c2.visualizar();
-		
-		System.out.println(c1.sacar(1000));
-		System.out.println("O saldo da conta é: " + c1.getSaldo());
-		System.out.println(c2.sacar(50000));
-		System.out.println("O saldo da conta é: " + c2.getSaldo());
-		
-		c1.depositar(5000); //preciso criar
-		System.out.println("O Saldo da conta é: " + c1.getSaldo());*/
-		
-		//instanciar objetos da classe ContaCorrente
-		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f);
-		
-		cc1.visualizar(); 
-		//sacar CC
-		System.out.println(cc1.sacar(2000000.00f)); //saque valor superior ao disp.
-		cc1.visualizar();
-		System.out.println(cc1.sacar(2000.00f)); //saque valor menor ao disp.
-		cc1.visualizar();
-		
-		//depositar em CC
-		cc1.depositar(5000.00f);//(não precisa adicionar nada por ser CC, pois o saque é um metodo void)
-		cc1.visualizar(); 
-		
-		ContaPoupanca cp1 = new ContaPoupanca(4, 280, 2, "Geovana Cazali", 1500000.00f, 24);
-		cp1.visualizar();
-		cp1.depositar(2000);
-		System.out.println("O Saldo da conta é: " + cp1.getSaldo());
+		criarContasTeste();
 		
 		while (true) {
 		
@@ -69,49 +39,91 @@ public class Menu {
 		System.out.println("      0- Sair                    ");
 		System.out.println("*********************************");
 		System.out.println(" Selecione a opção desejada:     ");
+	
+		try {
+			opcao = leia.nextInt();
+			leia.nextLine();
+		}catch (InputMismatchException e) {
+			opcao = -1;
+			System.out.println("Digite um número entre 0 e 8");
+			leia.nextLine();
+		}
 		
-		opcao = leia.nextInt();
+		if (opcao == 0) {
+			System.out.println("banco Sagitaurus agradece  ");
+			sobre();
+			leia.close();
+			System.exit(0);
+		}
 		
 			switch (opcao) {
 		case 1:
 			System.out.println("Criar uma conta \n\n");
+			
+			KeyPress();
 			break;
 		case 2:
-			System.out.println("Listar todas as contas \n\n");
+			System.out.println("A listagem das contas é: \n\n");
+			
+			listarContas(); //adicionado la no0 final do código com o void
+			
+			KeyPress();
 			break;
 		case 3:
 			System.out.println("Buscar conta por número \n\n");
+			
+			KeyPress();
 			break;
 		case 4:
 			System.out.println("Atualizar dados \n\n");
+			
+			KeyPress();
 			break;
 		case 5:
 		    System.out.println("Apagar conta \n\n");
+		    
+		    KeyPress();
 			break;	
 		case 6:
 			System.out.println("Sacar \n\n");
+			
+			KeyPress();
 			break;
 		case 7:
 			System.out.println("Depositar \n\n");
+			
+			KeyPress();
 			break;
 		case 8:
 			System.out.println("Transferir valores \n\n");
-			break;
-		case 0:
-			System.out.println("O banco Sagitauros agradece a sua preferencia \n\n");
-			sobre();
+			
+			KeyPress();
 			break;
 			default:
 			System.out.println("Opção invalida!");
+			KeyPress();
+			break;
 			}
-		
-		
-		leia.close();
-  }}
+		}
+    }
 	public static void sobre(){
 		System.out.println("*********************************");
 		System.out.println("Projeto desenvolvido por:        ");
 		System.out.println("Geovana Cazali da Silva          ");
 		System.out.println("*********************************");
+	}
+	public static void KeyPress() {
+		System.out.println(Cores.TEXT_RESET + "\n Pressione enter para continuar...");
+		leia.nextLine();
+	}
+	
+	private static void criarContasTeste() {
+	contaController.cadastrar(new ContaCorrente(1, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f));
+	contaController.cadastrar(new ContaPoupanca(4, 280, 2, "Geovana Cazali", 1500000.00f, 24));
+	}
+	
+	private static void listarContas() {
+	contaController.listarTodas();
+	
 	}
 }
