@@ -38,11 +38,11 @@ public abstract class Conta { // o abstract aqui transforma essa classe em abstr
 			this.numero = numero;
 		}
 
-		public int getAgendia() {
+		public int getAgencia() {
 			return agencia;
 		}
 
-		public void setAgendia(int agencia) {
+		public void setAgencia(int agencia) {
 			this.agencia = agencia;
 		}
 
