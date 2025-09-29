@@ -2,6 +2,7 @@ package conta_bancaria.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import conta_bancaria.model.Conta;
 import conta_bancaria.repository.ContaRepository;
@@ -64,19 +65,55 @@ public class ContaController implements ContaRepository{ // vai reclamar no Cont
 
 	@Override
 	public void sacar(int numero, float valor) {
-		// TODO Auto-generated method stub
 		
+		var conta = buscarNaCollection(numero); // metodo para encontrar a conta através do numero
+		if(conta != null) {
+			if(conta.sacar(valor) == true) {// aqui coloca o if, pois esta variavel é boolean, la na conta.
+				System.out.printf("\nO saque no valor de %.2f, na conta numero: %d foi efetuado com sucesso!", valor, numero);
+			}
+		}else {
+			System.out.printf("\nA conta número: %d não foi encontrada!%n", numero);
+			}
 	}
 
 	@Override
 	public void depositar(int numero, float valor) {
-		// TODO Auto-generated method stub
-		
+		var conta = buscarNaCollection(numero); // metodo para encontrar a conta através do numero
+		if(conta != null) { //para encontrar no método
+			conta.depositar(valor); //metodo depositar, para depositar o valor de depósito
+				System.out.printf("\nO deposito no valor de %.2f, na conta numero: %d foi efetuado com sucesso!", valor, numero);
+		}else {
+			System.out.printf("\nA conta número: %d não foi encontrada!%n", numero);
+			}
 	}
 
 	@Override
 	public void transferir(int numeroOrigem, int numeroDestino, float valor) {
-		// TODO Auto-generated method stub
+		var contaOrigem = buscarNaCollection(numeroOrigem); //abre as variaveis
+		var contaDestino = buscarNaCollection(numeroDestino);
+		if(contaOrigem != null && contaDestino!= null) { //verifica existencia
+			if(contaOrigem.sacar(valor) == true) { //realizar o saque na conta origem 
+				contaDestino.depositar(valor); //realizar deposito na conta destino
+				System.out.printf("\nA transferencia no valor de %.2f, da conta numero:"
+						+ "+ %d para a conta número: %d, foi efetuado com sucesso!",
+						          valor,  numeroOrigem, numeroDestino);
+			}
+		}else {
+			System.out.printf("\nA conta  de origem e/ou a conta de destino não foram encontradas!%n");
+			}
+	}
+	@Override
+	public void listarPorTitular(String titular) { // para procurar todas as palavras com esse nome
+		
+		List<Conta> listaTitulares =listaContas.stream()
+				.filter(c -> c.getTitular().toUpperCase().contains(titular.toUpperCase()))
+				.collect(Collectors.toList());
+		if (listaTitulares.isEmpty()) {
+			System.out.printf("\nNenhuma conta foi encontrado para titulares com o nome: %s\n", titular);
+		}
+		for(var conta : listaTitulares) {
+			conta.visualizar();
+		}
 		
 	}
 	
@@ -93,4 +130,6 @@ public class ContaController implements ContaRepository{ // vai reclamar no Cont
 		}
 		return null;
 	}
+
+	
 }
